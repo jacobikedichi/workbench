@@ -1,0 +1,5 @@
+Django==1.10.2
+django-crispy-forms==1.6.0
+djangorestframework==3.4.3
+Markdown==2.6.7
+pytz==2016.7
