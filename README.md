@@ -7,9 +7,9 @@ _This project is intended to showcase Django Rest Framework at work. The problem
 Create a comment API using the Django REST Framework that will allow the user to submit comments associated with the below content URLs, or retrieve a list of comments associated with a content URL.
 
 Content URLs
-/Facebook
-/BestBuy
-/Walmart
+/Facebook__
+/BestBuy__
+/Walmart__
 
 Use the specs below to design the app with some flexibility to allow an administrator to adjust these numbers.
 
@@ -20,6 +20,5 @@ Use the specs below to design the app with some flexibility to allow an administ
 * Any Comment that is an exact duplicate of an existing comment posted within the last 24 hours should be rejected and the originating IP Address should be locked out for 1 minute.
 * The API should use a rate limiter to prevent the user from making more than 20 requests (POST and GET) per minute.
 
-*Use sqlite database.*
-
-*No real need to use authenticated users, the username field can be set manually*
+*Use sqlite database.*__
+*No real need to use authenticated users, the username field can be set manually*__
