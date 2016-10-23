@@ -1,0 +1,6 @@
+
+#Ignore eclipse pydev property files
+.project
+.pydevproject
+#Ignore compilled files
+*.pyc
