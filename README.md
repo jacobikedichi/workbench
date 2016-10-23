@@ -1,7 +1,7 @@
-## Comments ##
+### Comments ###
 
 
-### This project is intended to showcase Django Rest Framework at work. The problem statement is below ###
+_This project is intended to showcase Django Rest Framework at work. The problem statement is belo_
 
 
 Create a comment API using the Django REST Framework that will allow the user to submit comments associated with the below content URLs, or retrieve a list of comments associated with a content URL.
