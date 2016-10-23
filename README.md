@@ -20,6 +20,6 @@ Use the specs below to design the app with some flexibility to allow an administ
 * Any Comment that is an exact duplicate of an existing comment posted within the last 24 hours should be rejected and the originating IP Address should be locked out for 1 minute.
 * The API should use a rate limiter to prevent the user from making more than 20 requests (POST and GET) per minute.
 
-*Please use a sqlite database.*
+*Use sqlite database.*
 
 *No real need to use authenticated users, the username field can be set manually*
