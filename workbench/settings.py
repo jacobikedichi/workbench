@@ -23,7 +23,7 @@ parser = RawConfigParser()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #This is the default when DEBUG is True. Different values are used in different environments (i.e. Prodcution, Staging, Testing, Development)
 
 # Application definition
 
@@ -91,6 +91,7 @@ if not os.path.isfile(env_file):
 else:
     parser.read(env_file)
 
+    ALLOWED_HOSTS = parser.get('general', 'ALLOWED_HOSTS'),
     SECRET_KEY = parser.get('general', 'SECRET_KEY'),
     DEBUG = parser.getboolean('general', 'DEBUG')
     DATABASES = {
