@@ -11,16 +11,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from ConfigParser import RawConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+parser = RawConfigParser()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'uv*p&wv5wwcvuv6m$uc_j56-!x7!%%0m_yp9v#j(^ku!##6(^='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,12 +76,33 @@ WSGI_APPLICATION = 'workbench.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+env_file = os.path.join(BASE_DIR, ".env")
+
+if not os.path.isfile(env_file):
+    #Use django default sqlite db settings
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'uv*p&wv5wwcvuv6m$uc_j56-!x7!%%0m_yp9v#j(^ku!##6(^='
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    parser.read(env_file)
+
+    SECRET_KEY = parser.get('general', 'SECRET_KEY'),
+    DEBUG = parser.getboolean('general', 'DEBUG')
+    DATABASES = {
+        'default': {
+            'ENGINE': parser.get('database', 'DB_ENGINE'),
+            'NAME': parser.get('database', 'DB_NAME'),
+            'USER': parser.get('database', 'DB_USER'),
+            'PASSWORD': parser.get('database', 'DB_PASSWORD'),
+            'HOST': parser.get('database', 'DB_HOST'),
+            'PORT': parser.get('database', 'DB_PORT'),
+        }
+    }
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
