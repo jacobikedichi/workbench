@@ -1,4 +1,5 @@
-
+#ignore our secret files
+.env
 #Ignore eclipse pydev property files
 .project
 .pydevproject
