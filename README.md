@@ -20,3 +20,20 @@ Use the specs below to design the app with some flexibility to allow an administ
 
 *Use sqlite database.*  
 *No real need to use authenticated users, the username field can be set manually*  
+
+
+##### Configuration notes #####
+By default we are using the default SQLite database configuration that our django application came with. This is encouraged for local development use.  
+In other deployment environment (i.e. Production, Staging, Testing and Development), we are storing all secrets/values in a .env file at the root of this application. Of course the .evn file is not, and should never be checked into source control.  
+Our favorite litmus test in making sure that there is a clear seperation between  code and sensitive configuration data is this: Can we make or source code an open source project without compromising sensitive information?  
+
+If you wish to set this project up with a more industrial RDMS system (i.e.e MySQL, PostgreSQL, Orancle, etc), go ahead and create a .env file at the root of this project. In your .env file, add a section called 'database' and define the following paramters: DB\_ENGINE, DB\_NAME, DB\_USER, DB\_PASSWORD, DB\_HOST, DB\_PORT.  
+For example:  
+
+[database]  
+DB\_ENGINE = "engine value"  
+DB\_NAME = "db name"  
+DB\_USER = "db user"  
+DB\_PASSWORD = "my db password!"  
+DB\_HOST = "db host"  
+DB\_PORT = "port"  
