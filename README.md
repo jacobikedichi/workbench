@@ -40,5 +40,6 @@ DB\_PORT = "port"
 
 If you are using PostgreSQL, be sure to install the following dependencies: build-dep, python-psycopg2. On an ubuntu system, do:
 ```bash
- sudo apt-get build-dep python-psycopg2
+ sudo apt-get build-dep python-psycopg2 #psql dependencies
+ sudo apt-get install postgresql-client #psql client
 ```
