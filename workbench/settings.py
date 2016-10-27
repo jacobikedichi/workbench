@@ -23,7 +23,9 @@ parser = RawConfigParser()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] #This is the default when DEBUG is True. Different values are used in different environments (i.e. Prodcution, Staging, Testing, Development)
+ALLOWED_HOSTS = [] #This is the default when DEBUG is True. Different values are used in different 
+                   #environments (i.e. Prodcution, Staging, Testing, Development)
+XFRAME_EXEMPT_IPS = [] #All the hostnames that we wish to give permission to load our web content in an iframe
 
 # Application definition
 
@@ -49,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'workbench.middleware.ExemptFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'workbench.urls'
@@ -91,9 +93,10 @@ if not os.path.isfile(env_file):
 else:
     parser.read(env_file)
 
-    ALLOWED_HOSTS = parser.get('general', 'ALLOWED_HOSTS'),
-    SECRET_KEY = parser.get('general', 'SECRET_KEY'),
+    ALLOWED_HOSTS = parser.get('general', 'ALLOWED_HOSTS').split(',')
+    SECRET_KEY = parser.get('general', 'SECRET_KEY')
     DEBUG = parser.getboolean('general', 'DEBUG')
+    XFRAME_EXEMPT_IPS = parser.get('general', 'XFRAME_EXEMPT_IPS').split(',')
     DATABASES = {
         'default': {
             'ENGINE': parser.get('database', 'DB_ENGINE'),
