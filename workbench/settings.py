@@ -96,7 +96,8 @@ else:
     ALLOWED_HOSTS = parser.get('general', 'ALLOWED_HOSTS').split(',')
     SECRET_KEY = parser.get('general', 'SECRET_KEY')
     DEBUG = parser.getboolean('general', 'DEBUG')
-    XFRAME_EXEMPT_IPS = parser.get('general', 'XFRAME_EXEMPT_IPS').split(',')
+    #We need to filter out all empty values in the list
+    XFRAME_EXEMPT_IPS = filter(None, parser.get('general', 'XFRAME_EXEMPT_IPS').split(','))
     DATABASES = {
         'default': {
             'ENGINE': parser.get('database', 'DB_ENGINE'),
