@@ -10,6 +10,6 @@ class ExemptFrameOptionsMiddleware(XFrameOptionsMiddleware):
     """
     def get_xframe_options_value(self, request, response):
         referer = request.META.get('HTTP_REFERER', None)
-        if referer and urlparse(referer).hostname() in settings.XFRAME_EXEMPT_IPS:
+        if referer and urlparse(referer).hostname in settings.XFRAME_EXEMPT_IPS:
             return 'ALLOWALL' # non standard, equivalent to omitting
         return super(ExemptFrameOptionsMiddleware, self).get_xframe_options_value(request, response)
