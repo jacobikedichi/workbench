@@ -43,3 +43,4 @@ If you are using PostgreSQL, be sure to install the following dependencies: buil
  sudo apt-get build-dep python-psycopg2 #psql dependencies
  sudo apt-get install postgresql-client #psql client
 ```
+Code is deplyed at [here](http://ec2-54-146-191-34.compute-1.amazonaws.com"Jacob Ikedichi's demo site")
